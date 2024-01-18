@@ -45,13 +45,13 @@ module.exports = {
     '@stylistic/js/function-call-spacing': ['error', 'never'],
     '@stylistic/js/template-tag-spacing': ['error', 'always'],
     '@stylistic/js/computed-property-spacing': ['error', 'never'],
-    '@stylistic/js/space-before-function-paren': ['error', {
-      "anonymous": "always",
-      "named": "never",
-      "asyncArrow": "always"
-    }],
     '@stylistic/js/no-mixed-spaces-and-tabs': ['warn', 'smart-tabs'],
     '@stylistic/js/arrow-spacing': ['error', {before: true, after: true} ],
     '@stylistic/js/object-curly-spacing': ['error', 'always', {arraysInObjects: true, objectsInObjects: true} ],
+    '@stylistic/js/space-before-function-paren': ['error', {
+      anonymous: 'always',
+      named: 'never',
+      asyncArrow: 'always'
+    }],
   },
 };
