@@ -4,6 +4,10 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  await app.listen(process.env.PORT, () => console.log(`Server run on ${process.env.PORT} in ${process.env.CONFIGURATION_MODE} mode`));
+  await app.listen(process.env.PORT, () =>
+    console.log(
+      `Server run on ${process.env.PORT} in ${process.env.CONFIGURATION_MODE} mode`,
+    ),
+  );
 }
 bootstrap();
