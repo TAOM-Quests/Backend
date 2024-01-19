@@ -20,6 +20,14 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'endOfLine': 'off',
+    "prettier/prettier": [
+      "error", {
+        "singleQuote": true,
+        'endOfLine': 'auto', 
+      }
+    ],
+
     /** @description typescript rules  */
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
