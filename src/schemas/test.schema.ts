@@ -5,6 +5,9 @@ export class Test {
   @Prop({ required: true })
   title: string;
 
+  @Prop()
+  group: string;
+
   @Prop([String])
   tags: string[];
 
