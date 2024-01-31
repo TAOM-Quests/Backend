@@ -21,10 +21,11 @@ module.exports = {
   ignorePatterns: ['.eslintrc.js'],
   rules: {
     'endOfLine': 'off',
-    "prettier/prettier": [
-      "error", {
-        "singleQuote": true,
+    'prettier/prettier': [
+      'error', {
+        'singleQuote': true,
         'endOfLine': 'auto', 
+        'printWidth': 100
       }
     ],
 
