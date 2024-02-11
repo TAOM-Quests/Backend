@@ -6,7 +6,7 @@ export class Result {
     raw([
       {
         title: { type: String, required: true },
-        tags: { type: [String], required: true },
+        tags: { type: [String] },
         group: { type: String, required: true },
         difficult: { type: String, required: true },
       },
@@ -14,8 +14,15 @@ export class Result {
   )
   test: ITestDTO;
 
-  @Prop({ type: [String], required: true })
-  answers: string[];
+  @Prop(
+    raw([
+      {
+        type: { type: String, required: true },
+        answer: { type: [String], required: true },
+      },
+    ]),
+  )
+  answers: IAnswer[];
 }
 
 export const ResultSchema = SchemaFactory.createForClass(Result);
@@ -25,4 +32,9 @@ interface ITestDTO {
   tags: string[];
   group: string;
   difficult: string;
+}
+
+interface IAnswer {
+  type: string;
+  answer: string[];
 }

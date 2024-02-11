@@ -3,6 +3,9 @@ import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 @Schema()
 export class Test {
   @Prop({ required: true })
+  type: string;
+
+  @Prop({ required: true })
   title: string;
 
   @Prop()
@@ -10,6 +13,9 @@ export class Test {
 
   @Prop([String])
   tags: string[];
+
+  @Prop({ required: true })
+  difficult: number;
 
   @Prop(
     raw([
