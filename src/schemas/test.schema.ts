@@ -33,7 +33,7 @@ export class Test {
         text: { type: String, required: true },
         type: { type: String, required: true },
         answers: { type: [String], required: true },
-        correctAnswer: { type: String },
+        correctAnswer: { type: [String] },
       },
     ]),
   )
@@ -51,7 +51,7 @@ interface IQuestion {
   text: string;
   type: questionType;
   answers: string[];
-  correctAnswer?: string;
+  correctAnswer?: string[];
 }
 
 /**
