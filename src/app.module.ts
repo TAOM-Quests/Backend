@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TestsModule } from './tests/tests.module';
 import { ResultsModule } from './results/results.module';
+import { CodeCompilerModule } from './code-compiler/code-compiler.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ResultsModule } from './results/results.module';
     MongooseModule.forRoot(process.env.DATABASE_URI),
     TestsModule,
     ResultsModule,
+    CodeCompilerModule,
   ],
   controllers: [],
   providers: [],
