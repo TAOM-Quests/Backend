@@ -8,6 +8,9 @@ export class Test {
   @Prop({ required: true })
   title: string;
 
+  @Prop({ required: true })
+  description: string;
+
   @Prop()
   group: string;
 
@@ -34,6 +37,7 @@ export class Test {
         type: { type: String, required: true },
         answers: { type: [String], required: true },
         correctAnswer: { type: [String] },
+        language: { type: String }
       },
     ]),
   )
@@ -52,6 +56,7 @@ interface IQuestion {
   type: questionType;
   answers: string[];
   correctAnswer?: string[];
+  language?: string;
 }
 
 /**
