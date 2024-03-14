@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Module,  Logger, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TestsModule } from './tests/tests.module';
 import { ResultsModule } from './results/results.module';
 import { CodeCompilerModule } from './code-compiler/code-compiler.module';
+import { WinstonModule } from 'nest-winston';
+import { LoggerMiddleware } from './helpers/middleware/logger';
 
 @Module({
   imports: [
@@ -11,11 +13,20 @@ import { CodeCompilerModule } from './code-compiler/code-compiler.module';
       envFilePath: `.${process.env.CONFIGURATION_MODE}.env`,
     }),
     MongooseModule.forRoot(process.env.DATABASE_URI),
-    TestsModule,
+    WinstonModule.forRootAsync({
+      useFactory: () => ({
+      }),
+      inject: [],
+    }),
     ResultsModule,
+    TestsModule,
     CodeCompilerModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [Logger, LoggerMiddleware],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*'); // Apply to all routes
+  }
+}

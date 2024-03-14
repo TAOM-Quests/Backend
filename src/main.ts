@@ -1,8 +1,25 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { WinstonModule } from 'nest-winston';
+import { createLogger } from 'winston';
+import * as winston from 'winston'
+import { LoggerMiddleware } from './helpers/middleware/logger';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const instance = createLogger({
+    levels: winston.config.npm.levels,
+    transports: [
+      new winston.transports.Console(),
+      new winston.transports.File({ filename: 'combined.log' })
+    ]
+  });
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger({
+      instance,
+    }),
+  });
+
   app.setGlobalPrefix('api');
   app.enableCors({
     allowedHeaders: '*',
