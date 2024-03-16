@@ -1,7 +1,11 @@
 import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
+import { SchemaTypes, Types } from 'mongoose';
 
 @Schema()
 export class Test {
+  @Prop({ type: SchemaTypes.ObjectId, required: true })
+  _id: Types.ObjectId;
+
   @Prop({ required: true })
   type: string;
 
@@ -36,8 +40,9 @@ export class Test {
         text: { type: String, required: true },
         type: { type: String, required: true },
         answers: { type: [String], required: true },
+        images: { type: [String] },
+        language: { type: String },
         correctAnswer: { type: [String] },
-        language: { type: String }
       },
     ]),
   )
@@ -55,8 +60,9 @@ interface IQuestion {
   text: string;
   type: questionType;
   answers: string[];
-  correctAnswer?: string[];
+  images?: string[];
   language?: string;
+  correctAnswer?: string[];
 }
 
 /**
