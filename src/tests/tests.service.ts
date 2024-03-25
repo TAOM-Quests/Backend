@@ -21,6 +21,13 @@ export class TestsService {
   }
 
   async getByParams(params: ISearch): Promise<Test[]> {
-    return this.testModel.find(params).exec();
+    const dbParams: object = {};
+    params.search
+      .filter((param) => param.operator === 'eq')
+      .forEach((param) => {
+        dbParams[param.field] = param.value;
+      });
+
+    return this.testModel.find(dbParams).exec();
   }
 }

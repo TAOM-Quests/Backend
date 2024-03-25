@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 @Schema()
 export class Test {
   @Prop({ required: true })
-  type: string;
+  department: string;
 
   @Prop({ required: true })
   title: string;
@@ -36,8 +36,8 @@ export class Test {
         text: { type: String, required: true },
         type: { type: String, required: true },
         answers: { type: [String], required: true },
-        correctAnswer: { type: [String] },
-        language: { type: String }
+        correctAnswer: { type: [String], required: true },
+        language: { type: String },
       },
     ]),
   )
@@ -53,9 +53,9 @@ interface IResult {
 
 interface IQuestion {
   text: string;
-  type: questionType;
   answers: string[];
-  correctAnswer?: string[];
+  type: questionType;
+  correctAnswer: string[];
   language?: string;
 }
 
@@ -64,8 +64,9 @@ interface IQuestion {
   Перечень типов вопросов:
   one - вопрос с одним правильны ответом
   many - вопрос с множественныи выбором
-
-  @todo
-  Добавить другие типы вопросов
+  sorting - вопрос с распределением по блокам
+  link - вопрос на соединение элементов
+  code - вопрос с написанием кода
+  free - вопрос со свободным ответом
 **/
-type questionType = 'one' | 'many';
+type questionType = 'one' | 'many' | 'sorting' | 'link' | 'code' | 'free';

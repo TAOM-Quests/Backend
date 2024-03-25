@@ -1,6 +1,6 @@
 {
-  "name": "TAOM-Quests-Backend",
-  "version": "0.0.1",
+  "name": "tq-backend",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
